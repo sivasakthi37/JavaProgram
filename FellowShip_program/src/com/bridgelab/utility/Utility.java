@@ -2,6 +2,7 @@ package com.bridgelab.utility;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.time.Instant;
 
 public class Utility {
 
@@ -114,7 +115,7 @@ public static void factorial() {
 		System.out.println(n);
 	}
 }
-//gambler  program............
+//gambler  program............-----------------------------------------
 
 public static void gamblers() {
 	Scanner sc=new Scanner(System.in); 
@@ -163,7 +164,7 @@ int pl=(loose*100/toss);
 	System.out.println("amount========>"+amount);
 	System.out.println("toss===========>"+toss);
 }
-//coupon function
+//coupon function---------------------------------------------------------------------------------
 
 public static void coupon() {
 	
@@ -175,44 +176,332 @@ public static void coupon() {
 	
 	for(int i=0;i<a.length;i++) {
 		
-		
-		
-		
 		Random rn=new Random();
-		int r=rn.nextInt(9);
+		int r=rn.nextInt(9);//it generate the random number
 		a[i]=r;
 		
 	 for (int j=0;j<i;j++)
      {
-         if (a[i] == a[j])
+         if (a[i] == a[j])//if the jvm generate number is already present. i value is getting decreased
          {
              i--;
          }
-     }
-		
-		
-		
-		
+     }			
 	}
 	for(int i=0;i<a.length;i++) {
 		System.out.print(a[i]);
 	}
+}
+	// 2d Array------------------------------------------------------------------------------------
+
+public static void TwodArray() {
+	
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Enter the row number ");
+	int r=sc.nextInt();
+	System.out.println("enter the column number");
+	int c=sc.nextInt();
+	
+	
+	int a[][]=new int[r][c];
+	System.out.println("Enter the value ");
+	
+
+	//it is get the array value from the user..............
+	for(int i=0;i<a.length;i++) {
+		for(int j=0;j<a[i].length;j++) {
+			a[i][j]=sc.nextInt();	
+		}
+	}
+	//print the array value....... 
+	for(int i=0;i<a.length;i++) {
+		for(int j=0;j<a[i].length;j++) {
+			System.out.print(" "+ a[i][j]);
+		}
+		System.out.println();	
+	}		
+}
+//triplets----------------------------------------------------------------------------------------
+public static void Tripletes() {
+	
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Enter the Size of the array ");
+	int n=sc.nextInt();
+	
+	//get one array from the user.........
+    int a[]=new int[n];
+    System.out.println("Enter the value ");
+    for(int i=0;i<a.length;i++) {
+    	a[i]=sc.nextInt();
+    }
+    
+    // main logic of triplets.....  
+    for(int i=0;i<a.length-2;i++) {
+    	for(int j=0;j<a.length-1;j++) {
+    		for(int k=0;k<a.length;k++) {
+    			if(a[i]+a[j]+a[k]==0) {
+    				System.out.println("your triplets number is "+a[i]+" "+a[j]+" "+a[k]);
+    				
+    			}
+    			
+    			
+    		}
+    		
+    	}
+    	
+    }	
+	
+}
+//Distance program-------------------------------------------------------------------------
+
+public static void Distancep() {
+	
+	
+	Scanner sc=new Scanner(System.in);
+	System.out.println(" Enter the  X value");
+	int x=sc.nextInt();
+	System.out.println("Enter the Y value ");
+	int y=sc.nextInt();
 	
 	
 	
-	
-	
+	double d=((x*x)+(y*y));//to find the d value 
+	System.out.println(d);	
+	System.out.println("your square root value is "+Math.sqrt(d));// math.sqrt is use to find the square value......
 	
 	
 }
+//permutation--------------------------------------------------------------------------------------
+
+	
+   
+	public class Permutation
+	{
+	    
+	    public void permute(String str, int s, int e)
+	    {
+	        if (s == e)
+	            System.out.println(str);
+	        else
+	        {
+	            for (int i = s; i <= s; i++)
+	            {
+	                str = swap(str,1,i);
+	                permute(str, s+1, e);// recursive call to generate all the possible values 
+	                str = swap(str,1,i);
+	            }
+	        }
+	    }
+
+// swaping the two alphabets
+	    public String swap(String a, int i, int j)
+	    {
+	        char temp;
+	        char[] charArray = a.toCharArray();
+	        temp = charArray[i] ;
+	        charArray[i] = charArray[j];
+	        charArray[j] = temp;
+	        return String.valueOf(charArray);
+	    }
+
+	}
+
+   //stop watch-------------------------------------------------------------------------- 
+
+	public static void Stopwatch() {
+		
+		Scanner sc=new Scanner(System.in);
+		
+		long Start=0,end=0;
+		
+		boolean flag=false;
+		
+		while(true) {
+			
+			System.out.println("Enter 0 for start the watch or Enter 1 for stop the watch" );
+			Byte b=sc.nextByte();
+			
+			
+			if(b==0) {
+				Start=Instant.now().toEpochMilli();// get the miliseconds from the System 
+			
+				flag=true;
+			}else if(b==1 && flag) {
+				
+				end=Instant.now().toEpochMilli();//Ended
+				break;
+				
+			}
+		}
+		System.out.println((end-Start)/1000+" seconds ");
+	}
+//Quadratic formula program----------------------------------------------
+public static void Quadratics() {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Enter the value of A");
+	int a=sc.nextInt();
+	System.out.println("Enter the value of B");
+	int b=sc.nextInt();
+	System.out.println("Enter the Value of C");
+	int c=sc.nextInt();
+	
+	
+	double delta=(b*b)-(4*a*c);
+	// farmula for Quadratics....... 
+	double x1=(-b+Math.sqrt(delta))/(2*a);
+	double x2=(-b-Math.sqrt(delta))/(2*a);
+	System.out.println("your Quadratic formula for positive sign is "+x1);
+	
+	System.out.println("your Quadratic formula for negative sign is "+x2);
+	
+}
+//Wind chill-----------------------------------------------------------------
+public static void Windchill() {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Enter the Tempertate in Fahrenheit ");
+	int t=sc.nextInt();
+	System.out.println("Enter the  miles per hour ");
+	int v=sc.nextInt();
+	
+double W=35.74+(0.6215*t)+((0.4275*t)-35.75)*(Math.pow(v, 0.16));// Formula to find the wind miles
+	
+	System.out.println(W);		
+}
+// Anagram--------------------------------------------------------------------
+
+public class Anagram {
+	
+	
+public void ana() {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Enter 1ST words TO FIND");
+	String st1=sc.nextLine();//get first String from the user....
+	System.out.println("Enter 2ND words TO FIND ");
+	String st2=sc.nextLine();//get Second String from the user...
+	
+	boolean b=isanagram(st1,st2);
+	if(b) {
+		System.out.println("yes it is Anagram");
+	}
+	else {
+		System.out.println("it is not a anagram");
+	}
+	
+}
+
+private boolean isanagram(String st1,String st2) {
+	
+	int c1[]=count(st1);
+	int c2[]=count(st2);
+	
+	for(int i=0;i<c1.length;i++) {
+		
+	if(c1[i]!=c2[i]) {
+		return false;
+	       
+	}	
+	}
+	return true;
+}
+
+private int[] count(String st1) {
+	int count[]=new int[26];
+	
+	for(int i=0;i<st1.length();i++) {
+		char ch=st1.charAt(i);
+		if('a'<=ch && ch<='z') {
+			count[ch-97]++;
+		}
+		else if('A'<=ch && ch<='Z') {
+			count[ch-65]++;
+		}	
+	}
+	return count;
+}	
+}
+//1-1000 Prime numbers---------------------------------------------------------------------
+public class prime {
+	public void Prime() {
+		for(int i=0;i<1000;i++) {
+			
+			if(isprime(i)) {
+				System.out.println(i);	
+			}	
+		}	
+	}
+	private boolean isprime(int n) {
+		
+		for(int i=2;i<n/2;i++) {
+			if(n%i==0) {         //logic of prime number
+				return false;
+			}
+		}
+		return true;
+	}	
+}
+// prime numbers that are Anagram and Palindrome-------------------------------------------- 
 
 
-
-
-
-
-
-
-
+public class primeanapoli {
+	public void Prime() {
+		for(int i=0;i<1000;i++) {
+			
+			if(isprime(i)) {
+				//System.out.println(i);
+				
+				ispalindrome(i);
+				
+				
+				
+			
+			}	
+		}	
+	}
+	private boolean isprime(int n) {
+		
+		for(int i=2;i<n/2;i++) {
+			if(n%i==0) {         //logic of prime number
+				return false;
+			}
+		}
+		return true;
+	}	
+	
+	private void ispalindrome(int n) {
+		int t=n;
+		int r,rev=0;
+		while(n!=0) {
+			
+			r=n%10;
+			
+		rev=rev*10+r;
+			
+			n=n/10;
+		}
+		
+		if(rev==t) {
+			System.out.print(" "+t);
+		}
+	}
+}
+//binary search in integer-------------------------------------------------------------------------------
+public static int binarysearch(int a[],int ele) {
+	int l=0;
+	int h=a.length-1,m;
+	while(l<=h) {
+		m=(l+h)/2;
+		if(ele==a[m]) {
+			return 1;
+		}
+		else if(ele<a[m]) {
+			h=m-1;
+		}
+		else if(ele>a[m]) {
+			l=m+1;
+		}
+	}
+		return 0;
+	
+}
 
 }
