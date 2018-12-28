@@ -367,6 +367,11 @@ double W=35.74+(0.6215*t)+((0.4275*t)-35.75)*(Math.pow(v, 0.16));// Formula to f
 	
 	System.out.println(W);		
 }
+/*
+  ***********************************Algorithm Programs is started***********************************
+
+
+*/
 // Anagram--------------------------------------------------------------------
 
 public class Anagram {
@@ -491,7 +496,7 @@ public static int binarysearch(int a[],int ele) {
 	while(l<=h) {
 		m=(l+h)/2;
 		if(ele==a[m]) {
-			return 1;
+			return m;
 		}
 		else if(ele<a[m]) {
 			h=m-1;
@@ -499,9 +504,108 @@ public static int binarysearch(int a[],int ele) {
 		else if(ele>a[m]) {
 			l=m+1;
 		}
+		else {
+			return m;
+		}
 	}
-		return 0;
+		return -1;
 	
 }
+//binary search in String--------------------------------------------------------------------------------
+public static int binarySearchstr(String st[],String str ) {
+	
+	int low=0;
+	int high=str.length();
+	
+	
+	while(low<=high) {
+		int middle=(low+high)/2;
+		
+		if(st[middle].compareTo(str)==0) {
+			return middle;
+		}
+		else if(st[middle].compareTo(str)<0) {
+			
+			low=middle+1;		
+		}
+		else if(st[middle].compareTo(str)>0) {
+			high=middle-1;
+		}
+	}
+	return -1;	
+}
+//isertion sort------------------------------------------------------------------------------------
+public static int[] insertionsort(int a[]) {
+
+	int temp;
+	int j;
+	
+	for(int i=1;i<a.length;i++) {
+		temp=a[i];
+		j=i;
+		while(j>0 && a[j-1]>temp) {
+			a[j]=a[j-1];
+			j=j-1;
+		}
+		a[j]=temp;
+	}
+	return a;	
+}
+//insertion Sort for String-----------------------------------------------------------------------------
+public static String[] insertionstr(String a[]) {
+	
+	String temp;
+	int j;
+	for(int i=1;i<a.length;i++) {
+		temp=a[i];
+		j=i;
+		while(j>0 && a[j-1].compareTo(temp)>0) {
+		String s1=a[j-1];
+		a[j-1]=a[j];
+		a[j]=s1;
+		j=j-1;
+		}
+		a[j]=temp;
+		
+	}
+	
+	return a;
+	
+}
+//bubble sort-----------------------------------------------------------------------------------------
+public static int[] bubblesort(int a[]) {
+	
+	for(int i=0;i<a.length;i++) {
+		for(int j=i+1;j<a.length;j++) {
+			
+			if(a[i]>a[j]) {
+				int t=a[i];
+				a[i]=a[j];
+				a[j]=t;
+			}
+			
+		}
+	}
+		return a;		
+}
+//bubble sort-----------------------------------------------------------------------------------------
+public static String[] bubblestr(String a[]) {
+	
+	for(int i=0;i<a.length;i++) {
+		for(int j=i+1;j<a.length;j++) {
+			
+			if(a[i].compareTo(a[j]) > 0) {
+				String t=a[i];
+				a[i]=a[j];
+				a[j]=t;
+			}	
+		}
+	}
+	return a;
+	
+	
+	
+}
+
 
 }
