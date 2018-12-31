@@ -1,5 +1,7 @@
 package com.bridgelab.utility;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Random;
 import java.util.Scanner;
 import java.time.Instant;
@@ -603,9 +605,290 @@ public static String[] bubblestr(String a[]) {
 	}
 	return a;
 	
-	
-	
 }
+// Merge sort-----------------------------------------------------------------------------------
+static void merge(int arr[], int l, int m, int r) 
+{ 
+    // Find sizes of two subarrays to be merged........ 
+    int n1 = m - l + 1; 
+    int n2 = r - m; 
+
+    // Create temp arrays...........
+    int L[] = new int [n1]; 
+    int R[] = new int [n2]; 
+
+    /*Copy data to temp arrays*/
+    for (int i=0; i<n1; ++i) 
+        L[i] = arr[l + i]; 
+    for (int j=0; j<n2; ++j) 
+        R[j] = arr[m + 1+ j]; 
 
 
+    /* Merge the temp arrays */
+
+    // Initial indexes of first and second subarrays... 
+    int i = 0, j = 0; 
+
+    // Initial index of merged subarry array ....
+    int k = l; 
+    while (i < n1 && j < n2) 
+    { 
+        if (L[i] <= R[j]) 
+        { 
+            arr[k] = L[i]; 
+            i++; 
+        } 
+        else
+        { 
+            arr[k] = R[j]; 
+            j++; 
+        } 
+        k++; 
+    } 
+
+    /* Copy remaining elements of L[] if any.... */
+    while (i < n1) 
+    { 
+        arr[k] = L[i]; 
+        i++; 
+        k++; 
+    } 
+
+    /* Copy remaining elements of R[] if any.. */
+    while (j < n2) 
+    { 
+        arr[k] = R[j]; 
+        j++; 
+        k++; 
+    } 
+} 
+
+// Main function that sorts arr[l..r] using 
+// merge() 
+public static void sort(int arr[], int l, int r) 
+{ 
+    if (l < r) 
+    { 
+        // Find the middle point...... 
+        int m = (l+r)/2; 
+
+        // Sort first and second halves... 
+        sort(arr, l, m); 
+        sort(arr , m+1, r); 
+
+        // Merge the sorted halves...... 
+        merge(arr, l, m, r); 
+    } 
+} 
+
+/* A utility function to print array of size n */
+public static void printArray(int arr[]) 
+{ 
+    int n = arr.length; 
+    for (int i=0; i<n; ++i) 
+        System.out.print(arr[i] + " "); 
+    System.out.println(); 
+} 
+//vending machine-----------------------------------------------
+
+public static void vendingMachine(int am) {
+	
+	int notes[]=new int[]{1000,500,200,100,50,20,10,5,2,1};
+	int count=0;
+	for(int i=0;i<notes.length;i++) {
+		
+		if(am/notes[i]>0) {
+		
+			System.out.println("number of "+notes[i]+" is "+am/notes[i]);
+			
+			count =count+am/notes[i];
+		am=am%notes[i];	
+		}
+	}
+	System.out.println("your total number of notes is "+count);
 }
+//	 Gregorian calendar--------------------------------------------------
+	public static int method(int year, int month, int day) 
+    { 
+        // to check the validity of day of month 
+        int[] darr = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }; 
+  
+        // check validity of year and month 
+        if (year > 0 && (month > 0 && month <= 12)) { 
+  
+            // check for a leap year and month of February 
+  
+            if ((year % 4 == 0 || year % 400 == 0) &&  
+                month == 2 && (day > 0 && day <= 29)) { 
+  
+                // month starts at zero, so we need to put ( month - 1 ). 
+                Calendar calendar = new GregorianCalendar(year, month - 1, day); 
+                
+               // System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+                return calendar.get(Calendar.DAY_OF_WEEK); 
+            } 
+        
+            else { 
+  
+                // check the range of day of month 
+                if (day > 0 && day <= darr[month - 1]) { 
+  
+                    // month starts at zero, so we need to put ( month - 1 ). 
+                    Calendar calendar = new GregorianCalendar(year, month - 1, day); 
+                   // System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+                    return calendar.get(Calendar.DAY_OF_WEEK); 
+                } 
+                else
+                    return 0; 
+            } 
+        } 
+        else
+            return 0; 
+    } 
+//temperaturConversion-----------------------------------------------------------------------------------
+	public class TemperaturConversion {
+		
+		// method to calculate the Celsius to Fahrenheit.....
+		public void CelsiustoFahrenheit() { 
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the  Celsius ");
+		int c=sc.nextInt();
+		 double F=((c * 9)/5) + 32; //formula for Celsius to Fahrenheit.....
+
+System.out.println("your Fahrenheit value is "+ F);			
+	}
+// method is calculate the  Fahrenheit to Celsius
+		public void FahrenheittoCelsius() {
+			
+			Scanner sc=new Scanner(System.in);
+	System.out.println("Enter the Fahrenheit ");		
+			int F=sc.nextInt();
+			
+			double c=((F-32) * 5)/9;// formula for Fahrenheit to Celsius
+System.out.println("Your Celsius value is "+c);
+			
+		}	
+}
+
+	// monthlyPayment-------------------------------------------------------------------------------------- 
+
+	public static void  monthlyPayment() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the P value ");
+		double P=sc.nextDouble();
+		System.out.println("Enter the Y value ");
+		double Y=sc.nextDouble();
+		System.out.println("Enter the R value ");
+		double R=sc.nextDouble();
+		
+		double n=12*Y;
+		
+		double r=R/(12*100);
+		
+		//double d=(1-(1+r));
+		
+		double d=Math.pow((1+r),-n);
+		double payment =(P*r)/1-d;
+		
+		
+	System.out.println("Your monthly payment is "+payment );
+	
+	
+	}
+//
+	
+	public static void Sqrt_newton() {
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the 1st String");
+		
+		double c=sc.nextDouble();
+		
+		double epsilon=1e-15;
+		/* if you multiply 10 000 000 000 * 10 000 000 000=the answer is too big so you will see 1e+20*/
+		 double t=c;// estimate of the Square root of c......
+		 
+		 // repeaty desired percision is achieved 
+		 while((Math.abs(t-c/t))>(epsilon *t)){
+			 
+			t=(c/t+t)/2.0; 
+			 
+		 }
+		 // print out the estimate of the square root of c
+		 System.out.println("The sqrt newton method value is: "+t);	
+	}
+	// Decimaltobinary--------------------------------------------------------------------------------  
+	public static void Decimaltobinary() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the decimal number tomconvert decimal ");
+		int n=sc.nextInt();
+		String str="";
+		while(n!=0) {
+			int r=n%2;
+			
+			str=r+str;
+			
+			n=n/2;
+		}
+		padding(str);
+		//System.out.println(Integer.toBinaryString(n));
+		System.out.println(str);
+	}
+	public static void padding(String str) {
+		
+		for(int i=str.length();i<32;i++) {
+			
+			
+			str="0"+str;
+			
+			
+		}
+		System.out.println(str);
+		
+	}
+	//Decimaltobinary and swapping the nibbles--------------------------------------------------------
+	public static void convertswapping() {
+
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the decimal number tomconvert decimal ");
+		int n=sc.nextInt();
+		int t=n;
+		String str="";
+		while(n!=0) {
+			int r=n%2;
+			
+			str=r+str;
+			
+			n=n/2;
+		}
+		System.out.println("decimal to binary value of "+t+" is "+str);
+		swapping(str);
+		
+	}
+	public static void swapping(String str) {
+		
+		if(str.length()%2==0) {
+			char ch[]=str.toCharArray();
+			char ch1[]=new char[str.length()/2];
+			char ch2[]=new char[str.length()/2];
+			for(int i=0;i<ch.length/2;i++) {
+				
+				 ch1[i]=ch[i];
+			
+				
+			}
+			int k=0;
+			for(int i=ch.length/2;i<ch.length;i++) {
+				ch2[k]=ch[i];
+				k++;
+			}
+		//	System.out.println(new String(ch1));
+			//System.out.println(new String(ch2));
+			System.out.println("your swapping the value is "+new String(ch2)+new String(ch1));
+			
+		}
+		else {
+			System.out.println(" we can't split this into to two things");
+		}	
+	}	
+	}
