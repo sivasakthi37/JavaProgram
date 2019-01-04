@@ -27,7 +27,7 @@ static	boolean isbalanced(String st)
 	
 
 	Mystack m=new Mystack(ch.length); 
-	
+	System.out.println(m);
 	for(int i=0;i<ch.length;i++) {
 		
 		if(ch[i]=='{'||ch[i]=='['||ch[i]=='(') {

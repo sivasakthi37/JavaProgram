@@ -1,5 +1,7 @@
 package com.bridgelab.Data_structures;
 
+import java.util.Arrays;
+
 public class Mystack {
 
 	Object st[];
@@ -38,6 +40,10 @@ public class Mystack {
 		}
 		return st[top--];	
 	}
+	//@Override
+//	public String toString() {
+//		return "Mystack [st=" + Arrays.toString(st) + ", capacity=" + capacity + ", top=" + top + "]";
+//	}
 	public Object peek() {
 		
 if(top==-1) {

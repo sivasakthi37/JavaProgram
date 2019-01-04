@@ -20,8 +20,9 @@ public class Myqueue {
 			System.out.println("Statck is full");
 			return false;
 		}
-		if(front==-1) 
+		if(front==-1) {
 			front++;
+		}
 			q[++rear]=obj;
 			return true;
 	}
@@ -38,8 +39,31 @@ public String toString ()
 	return st+"]";
 }
 	
+Object deque() {
 	
+	if(front==-1) {
+		System.out.println("queue is underflow");
+		
+	}
+	Object obj=q[front++];
 	
+	if(front >rear) {
+		front=rear=-1;
+		
+	}
+	return obj;	
+}
+boolean isempty() {
 	
+	if(front==-1 && rear==-1) {
+		return true;
+		
+	}
+	return false;
+}
+int size() {
 	
+	return rear+1;
+	
+}
 }
